@@ -1,0 +1,105 @@
+# Node modules
+node_modules/
+bower_components/
+
+# Build output
+dist/
+build/
+tmp/
+temp/
+out/
+coverage/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*.local
+
+# PM2 Process Manager
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Compiled source
+*.tsbuildinfo
+
+# Next.js / Nuxt.js / Vite / Astro
+.next/
+.nuxt/
+out/
+.vite/
+.svelte-kit/
+.astro/
+
+# Vercel / Netlify deployments
+.vercel/
+.netlify/
+
+# Storybook
+storybook-static/
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Optional npm cache directory
+.npm/
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Testing
+coverage/
+jest-html-reporters-*.html
+*.lcov
+*.lcov.info
+
+# TypeScript
+*.d.ts
+*.d.ts.map
+
+# Monorepo tools
+.pnpm-store/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+.yarn/patches/
+.yarn/releases/
+.yarn/plugins/
+
+# Firebase
+.firebase/
+.firebaserc
+
+# Miscellaneous
+*.tgz
+*.bak
+*.tmp
+
+# Local development only files
+local.env
+*.local.js
+
+# Docker
+docker-compose.override.yml
+.docker/
