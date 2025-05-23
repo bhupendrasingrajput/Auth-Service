@@ -1,26 +1,31 @@
-import Redis from 'ioredis';
+import { createClient } from 'redis';
 import config from './index.js';
 
-let redisInstance = null;
+const { host, port, username, password } = config.redis;
 
-const createRedisConnection = () => {
-    if (!redisInstance) {
-        redisInstance = new Redis({
-            host: config.redis.host || '127.0.0.1',
-            port: config.redis.port || 6379,
-            password: config.redis.password || undefined,
-            db: config.redis.db || 0,
-            maxRetriesPerRequest: null,
-            enableReadyCheck: false,
-        });
+const redis = createClient({
+    socket: {
+        host: host,
+        port: Number(port),
+        tls: true,
+    },
+    username,
+    password,
+});
 
-        redisInstance.on('connect', () => console.log('🔌 Redis connected! '));
-        redisInstance.on('error', (err) => console.error('🚨 Redis error : \n', err));
+redis.on('error', (err) => {
+    console.error('🐞 Redis Client Error:', err);
+});
+
+export const connectRedis = async () => {
+    try {
+        if (redis.isOpen) return;
+        await redis.connect();
+        console.log('🔌 Connected to Redis (TLS)');
+    } catch (err) {
+        console.error('🐞 Redis connection failed', err);
+        process.exit(1);
     }
-    return redisInstance;
 };
 
-const redis = createRedisConnection();
-
 export default redis;
-

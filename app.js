@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import authRoutes from './routes/auth.routes.js';
+import globalRoutes from './routes/index.routes.js';
 import errorHandler from './middlewares/errorHandler.js';
 
 const startApp = async () => {
@@ -22,8 +22,8 @@ const startApp = async () => {
     app.use(helmet());
     app.use(morgan('dev'));
 
-    app.use('/', authRoutes);
-    
+    app.use('/', globalRoutes);
+
     app.use(errorHandler);
 
     return app;

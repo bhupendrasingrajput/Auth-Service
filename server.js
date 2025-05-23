@@ -1,8 +1,9 @@
-import './loadVariables.js';
+import './utils/loadVariables.js';
 import cluster from 'cluster';
 import os from 'os';
 import startApp from './app.js';
 import config from './config/index.js';
+import { connectRedis } from './config/redis.js';
 
 const numCPUs = config.environment === 'development' ? 2 : os.cpus().length;
 const PORT = config.port;
@@ -19,6 +20,7 @@ if (cluster.isPrimary) {
 } else {
     (async () => {
         try {
+            await connectRedis();
             const app = await startApp();
 
             app.listen(PORT, () => {

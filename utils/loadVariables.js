@@ -24,10 +24,11 @@ const requiredEnvVars = [
     'DB_PASSWORD',
     'DB_DIALECT',
     'DB_LOGGING',
-    'DB_SSL_CERT_PATH',
+    // 'DB_SSL_CERT_PATH',
 
     // JWT
-    'JWT_SECRET',
+    'ACCESS_TOKEN_SECRET',
+    'REFRESH_TOKEN_SECRET'
 ];
 
 const missingVars = requiredEnvVars.filter((key) => !process.env[key]);
