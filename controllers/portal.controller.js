@@ -42,6 +42,8 @@ export const verifyOTP = async (req, res, next) => {
             }
         }
 
+        delete user?.password;
+
         const accessToken = generateToken(user, 'access');
         const refreshToken = generateToken(user, 'refresh');
 
