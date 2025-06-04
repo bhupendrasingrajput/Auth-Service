@@ -12,13 +12,9 @@ export const dashboardLogin = async (req, res, next) => {
 
         if (!user) throw new ApiError(404, 'User is not registered!');
 
-        const userAccesses = user.Accesses;
-
-        const isDashboardAccessible = userAccesses.some(
-            access => access?.service === 'dashboard'
-        );
-
-        if (!isDashboardAccessible) throw new ApiError(400, 'Dashboard is not accessible for you, contact admin!');
+        if (!user?.accesses?.['dashboard']) {
+            throw new ApiError(400, 'Dashboard is not accessible for you, contact admin!');
+        }
 
         const isValidPassword = await validatePassword(password, user.password, next);
 

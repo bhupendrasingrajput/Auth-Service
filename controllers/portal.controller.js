@@ -11,11 +11,15 @@ export const sendOTP = async (req, res, next) => {
 
         const user = await findUserByEmail(email);
 
+        if (!user?.accesses?.['portal']) {
+            throw new ApiError(403, "Access Denied!");
+        }
+
         const otp = await generateAndStoreOtp(email);
 
         const message = user ? `Hello ${user.name}, your OTP is ${otp}` : `Your OTP is ${otp}`;
 
-        return res.status(200).json({ message, otp });
+        return res.status(200).json({ message, otp, user });
     } catch (error) {
         next(error);
     }
