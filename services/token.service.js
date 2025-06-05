@@ -15,7 +15,7 @@ export const verifyToken = async (req, res, next) => {
     try {
         const { token } = req.body;
 
-        if (!token || !service) throw new ApiError(400, "Bad Request, token & service required!");
+        if (!token) throw new ApiError(400, "Bad Request, token & service required!");
 
         const payload = jwt.verify(token, accessTokenSecret);
 
